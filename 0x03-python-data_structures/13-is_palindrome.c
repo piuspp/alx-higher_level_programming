@@ -1,56 +1,70 @@
 #include "lists.h"
-#include <stdlib.h>
-
-/**
- * reverse_array - reverses the content of an array of integers
- * @a: int array to reverse
- * @n: number of elements in the array
- * Return: concatenated string
- */
-
-void reverse_array(int *a, int n)
-{
-        int *begin = a;
-        int *end;
-        int hold = 0;
-
-        end = a + n - 1;
-        for (; begin < end; begin++, end--)
-        {
-                hold = *end;
-                *end = *begin;
-                *begin = hold;
-        }
-}
-
-/**
- * is_palindrome - Return 1  if palindrome, 0 if not
- * @head: linked list
- * Return: Return 1  if palindrome, 0 if not
- */
+#include <stdio.h>
 
 int is_palindrome(listint_t **head)
 {
-        int size, *list, *rev;
-        listint_t *copy = *head;
+  listint_t *nhead, *tort, *hare, *ptort;
+  listint_t *cut = NULL, *half, *it1, *it2;
 
-        if (!head || !copy)
-                return (0);
-        if (!copy->next)
-                return (1);
+  if (!head || !*head)
+    return (1);
 
-        list = malloc(sizeof(int *));
-        if (!list)
-                return (0);
-        rev = malloc(sizeof(int *));
-        if (!rev)
-                return (0);
-        for (size = 0; copy; copy = copy->next, size++)
-                list[size] = copy->n;
+  nhead = *head;
+  if (nhead->next != NULL)
+    {
+      for (hare = nhead, tort = nhead; hare != NULL && hare->next != NULL;
+	   ptort = tort, tort = tort->next)
+	hare = hare->next->next;
+      if (hare != NULL)
+	{
+	  cut = tort;
+	  tort = tort->next;
+	}
+      ptort->next = NULL;
+      half = tort;
+      it1 = reverse_listint(&half);
+      for (it2 = *head; it2; it1 = it1->next, it2 = it2->next)
+	{
+	  if (it2->n != it1->n)
+	    return (0);
+	}
+      if (cut == NULL)
+	ptort->next = half;
+      else
+	{
+	  ptort->next = cut;
+	  cut->next = half;
+	}
+    }
 
-        list = rev;
-        reverse_array(rev, size);
-        if (list == rev)
-                return (1);
-        return (0);
+  return (1);
+}
+
+/**
+ * reverse_listint - Reverses a linked list in pladce
+ * @head: Pointer to a pointer pointing to the first item in the list
+ *
+ * Return: The new head of the reversed list
+ */
+listint_t *reverse_listint(listint_t **head)
+{
+  listint_t *next = NULL, *prev = NULL;
+
+  if (!head || !*head)
+    return (NULL);
+
+  while ((*head)->next)
+    {
+      next = (*head)->next;
+
+      (*head)->next = prev;
+
+      prev = *head;
+
+      *head = next;
+    }
+
+  (*head)->next = prev;
+
+  return (*head);
 }
