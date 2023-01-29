@@ -2,10 +2,10 @@
 
 import random
 number = random.randint(-10000, 10000)
-print("Last digit of {:d} is".format(number), end=' ')
 last_digit = abs(number) % 10
 if number < 0:
     last_digit *= -1
+print("Last digit of {} is".format(number), end='')
 if last_digit > 5:
     print("{} and is greater than 5" .format(last_digit))
 if last_digit == 0:
