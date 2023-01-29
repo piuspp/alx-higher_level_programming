@@ -1,3 +1,3 @@
 #!/usr/bin/python3
 def islower(c):
-    return ord(c) in range (97, 122)
+    return ord(c) in range(97, 122)
