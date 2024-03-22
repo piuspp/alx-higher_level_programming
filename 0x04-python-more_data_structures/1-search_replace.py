@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 
 def search_replace(my_list, search, replace):
-    ''' A function that searches and replaces all 
+        ''' A function that searches and replaces all 
     occurrences of an element'''
     new_list = []
-    for i in range (0, len (my_list)):
+    for i in range(0, len(my_list)):
         if my_list[i] == search:
             new_list.append(replace)
         else:
-            new_list.append(my_list[i]):
-    return(new_list)
+            new_list.append(my_list[i])
+    return (new_list)
