@@ -3,6 +3,12 @@
 
 
 class Square:
-    def __init__ (self, size):
-        """ Initiates size"""
-        self._size = size
+    """The class to create square."""
+
+    def __init__(self, size):
+        """Initialzes size to piV
+
+        Args:
+            size (int): the size of the square
+        """
+        self.__size = size
