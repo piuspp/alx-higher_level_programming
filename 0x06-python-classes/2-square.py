@@ -6,13 +6,9 @@ class Square:
     """ Creates a class square"""
 
     def __init__ (self, size=0):
-             """set size to private instance variable
+             """Initializes an instance"""
 
-        Args:
-            size (int): the size of the square
-        """
-
-        if int(size) != size:
+        if not isinstance(size, int):
             raise TypeError("size must be an integer")
         elif size < 0:
             raise ValueError("size must be >= 0")
