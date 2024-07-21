@@ -1,2 +1,2 @@
-def Class Rectangle:
+class Rectangle:
     pass
