@@ -1,0 +1,2 @@
+def Class Rectangle:
+    pass
